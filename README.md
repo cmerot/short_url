@@ -30,23 +30,34 @@ Then creates the database, here is how to do so with an sqlite database:
 To let users authenticate themselves to keep track of their urls, enable
 Google OAuth2 by creating an application on the [console](https://code.google.com/apis/console/).
 
+Configure your database in `app/bootstrap.php` and your GoogleOAuth client id
+and secret in `app/config.php`.
 
 ## Features
 
 Url slugs are generated with a bijective algorythm, directly pasted from 
 [http://www.flickr.com/groups/api/discuss/72157616713786392/](http://www.flickr.com/groups/api/discuss/72157616713786392/).
 
-- /2 redirects to the long url
-- /2.png shows a QR Code
-- /2/details shows the details available for the shortened url
+- /{short_code} redirects to the long url
+- /{short_code}.png shows a QR Code
+- /{short_code}/details shows the details available for the shortened url
 - /last/ redirects to the last shortened url
 - /shorten/ usefull with the help of the javascript bookmarklet
 - /mine/ When you are authenticated, shorten urls will be associated with your account and you'll be able to see your last shorten urls.
 
 **Bookmarklet** 
 
-Drag that button to your bookmark bar to test it:
-<a href="javascript:location='http://tmb.io/shorten/?url='+encodeURIComponent(location.href); void 0" class="btn btn-success">Shorten</a>
+HTML code to generate a link:
+
+    <a href="javascript:location='http://tmb.io/shorten/?url='+encodeURIComponent(location.href); void 0" class="btn btn-success">Shorten</a>
+
+Or just add a bookmark with the following url:
+
+    javascript:location='http://tmb.io/shorten/?url='+encodeURIComponent(location.href); void 0
+
+## Live demo
+
+A live demo is available at [tmb.io](http://tmb.io).
 
 ## Todo
 
