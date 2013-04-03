@@ -1,0 +1,43 @@
+{
+    "name": "chocopoche/short_url",
+    "description": "Yet another short url app!",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Corentin",
+            "email": "co@tmb.io"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "google/google-api-php-client",
+                "version": "0.6.1",
+                "dist": {
+                    "url": "http://google-api-php-client.googlecode.com/files/google-api-php-client-0.6.1.tar.gz",
+                    "type": "tar"
+                },
+                "autoload": {
+                    "classmap": ["src/"]
+                }
+            }
+        }
+    ],
+    "require": {
+        "aferrandini/phpqrcode": "dev-master",
+        "doctrine/dbal": "2.2.*",
+        "google/google-api-php-client": "0.6.*",
+        "silex/silex": "1.0.*@dev",
+        "symfony/form": "~2.1.4",
+        "symfony/translation": "~2.1",
+        "symfony/twig-bridge": "~2.1",
+        "twig/twig": ">=1.8,<2.0-dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Chocopoche": "src/"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{% extends layout %}
+ 
+{% block content %}
+<style>
+form {
+    text-align:center;
+}
+#form_url {
+    width:20em;
+}
+</style>
+<form action="#" method="post" class="form-inline">
+    {{ form_widget(form.url) }}
+    <button type="submit" class="btn btn-success">Shorten</button>
+    {{ form_widget(form) }}
+</form>
+
+<h2>Last shortened URL</h2>
+{% include '_urllist.twig' %}
+{% endblock %}

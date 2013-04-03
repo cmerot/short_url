@@ -1,0 +1,22 @@
+{% if app.user != false %}
+
+    <div class="btn-group navbar-text pull-right">
+        <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+            {{ app.google_oauth_user_email }}
+            <img src="{{ app.google_oauth_user_picture }}?sz=20" alt="Profile picture">
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="{#{ url('short_url_mine') }#}">My urls</a></li>
+            <li><a href="{{ path('google_oauth_logout') }}">Sign out</a></li>
+        </ul>
+    </div>
+
+{% else %}
+    <p class="navbar-text pull-right">
+        <a class="btn btn-inverse" href="{{ path('google_oauth_connect') }}">
+            Connect with Google
+        </a>
+    </p>
+
+{% endif %}

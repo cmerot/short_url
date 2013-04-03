@@ -1,0 +1,14 @@
+<table class="table">
+    <tr>
+        <th>Long URL</th>
+        <th>Short URL</th>
+        <th>Details</th>
+    </tr>
+    {% for url in last %}
+    <tr>
+        <td><a href="{{ url['url'] }}">{{ url['url'] }}</a></td>
+        <td><a href="{{ path('short_url_redirect', {'short_code': url['short_code']}) }}">{{ url('short_url_redirect', {'short_code': url['short_code']}) }}</a></td>
+        <td><a href="{{ path('short_url_details', {'short_code': url['short_code']}) }}">Details</a></td>
+    </tr>
+    {% endfor %}
+</table>

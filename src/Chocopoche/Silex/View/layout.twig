@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>tmb.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="{{ path('short_url_homepage') }}" class="brand">{{ app.request.host }} <small>url shortener</small></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="https://github.com/chocopoche/short_url#readme">About</a></li>
+            </ul>
+
+            {% if app.user != false %}
+
+              <div class="btn-group navbar-text pull-right">
+                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+                  {{ app.google_oauth_user_email }}
+                  <img src="{{ app.google_oauth_user_picture }}?sz=20" alt="Profile picture">
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('short_url_mine') }}">My urls</a></li>
+                  <li><a href="{{ path('google_oauth_logout') }}">Sign out</a></li>
+                </ul>
+              </div>
+
+            {% else %}
+              <p class="navbar-text pull-right">
+                <a class="btn btn-inverse" href="{{ path('google_oauth_connect') }}">
+                  Connect with Google
+                </a>
+              </p>
+            {% endif %}
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <script>
+    // $('#short_url').tooltip({trigger: 'click'});
+    </script>
+  </body>
+</html>
