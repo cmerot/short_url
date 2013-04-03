@@ -4,6 +4,7 @@ use Silex\Application;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\FormServiceProvider;
+use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\TranslationServiceProvider; // required by the form service in default templates
 use Silex\Provider\DoctrineServiceProvider;
@@ -19,10 +20,11 @@ $app['debut'] = true;
 $app->register(new UrlGeneratorServiceProvider());
 $app->register(new SessionServiceProvider());
 $app->register(new FormServiceProvider());
+$app->register(new ValidatorServiceProvider());
+$app->register(new TranslationServiceProvider());
 $app->register(new TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/../src/Chocopoche/Silex/View',
 ));
-$app->register(new TranslationServiceProvider());
 $app->register(new DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_sqlite',

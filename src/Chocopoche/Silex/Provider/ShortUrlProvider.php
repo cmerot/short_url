@@ -6,6 +6,7 @@ use Silex\ServiceProviderInterface;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints as Assert;
 use Chocopoche\Silex\Model\ShortUrlModel;
 use Chocopoche\Math\Bijection;
 use PHPQRCode\QRcode;
@@ -40,6 +41,7 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
                         'size'          => 140,
                     ),
                     'label' => 'Paste your URL here',
+                    'constraints' => new Assert\Url(),
                 ))
                 ->getForm();
         });
@@ -107,7 +109,14 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
                 $id = $app['short_url']->add($data['url'], $email);
                 $url_details = $app['short_url']->getById($id);
                 $r_url = $app['url_generator']->generate('short_url_details', array('short_code' => $url_details['short_code']));
+
                 return $app->redirect($r_url);
+            } 
+            else {
+                return $app['twig']->render('index.twig', array(
+                    'form' => $form->createView(),
+                    'last' => $app['short_url']->getLastShorten(10),
+                ));
             }
 
             $app->abort(404, "Nothing found!");
@@ -152,13 +161,16 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
         // Shorten the url in the query string (?url=)
         $controllers->get('/shorten/', function (Request $request) use ($app) {
             $url = rawurldecode($request->get('url'));
-
-            if ($url) {
+            $errors = $app['validator']->validateValue($url, new Assert\Url());
+            if ($url && ! $errors->has(0)) {
                 $id = $app['short_url']->add($url);
                 $url_details = $app['short_url']->getById($id);
                 $r_url = $app['url_generator']->generate('short_url_details', array('short_code' => $url_details['short_code']));
 
                 return $app->redirect($r_url);
+            } 
+            else {
+                $app->abort(404, $errors->get(0)->getMessage());
             }
 
             $app->abort(404, "The url query string parameter is required.");

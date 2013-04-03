@@ -1,5 +1,5 @@
 {
-    "hash": "904b5c9924190cb7a0a02f3c76c223a9",
+    "hash": "4769e101e009b5c4f4d45a008a138665",
     "packages": [
         {
             "name": "aferrandini/phpqrcode",
@@ -349,34 +349,86 @@
             "time": "2013-04-01 08:47:32"
         },
         {
+            "name": "symfony/config",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/Config",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Config.git",
+                "reference": "2b8694ad7f46072b154faaf5e74f2a06cb828fa7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/2b8694ad7f46072b154faaf5e74f2a06cb828fa7",
+                "reference": "2b8694ad7f46072b154faaf5e74f2a06cb828fa7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Config\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Config Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-03-01 10:42:20"
+        },
+        {
             "name": "symfony/event-dispatcher",
-            "version": "2.1.x-dev",
+            "version": "2.2.x-dev",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "v2.1.9"
+                "reference": "v2.2.0-RC3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/v2.1.9",
-                "reference": "v2.1.9",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/v2.2.0-RC3",
+                "reference": "v2.2.0-RC3",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "symfony/dependency-injection": "2.1.*"
+                "symfony/dependency-injection": ">=2.0,<3.0"
             },
             "suggest": {
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/http-kernel": "2.1.*"
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/http-kernel": "2.2.*"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\EventDispatcher": ""
+                    "Symfony\\Component\\EventDispatcher\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -395,41 +447,47 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2013-02-11 11:26:14"
+            "time": "2013-02-11 11:26:43"
         },
         {
             "name": "symfony/form",
-            "version": "2.1.x-dev",
+            "version": "dev-master",
             "target-dir": "Symfony/Component/Form",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Form.git",
-                "reference": "50537e995191740bbdc7f86dd20c64222b9fb371"
+                "reference": "094c9264480dceff17bba9c9c92b520cde55a15b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Form/zipball/50537e995191740bbdc7f86dd20c64222b9fb371",
-                "reference": "50537e995191740bbdc7f86dd20c64222b9fb371",
+                "url": "https://api.github.com/repos/symfony/Form/zipball/094c9264480dceff17bba9c9c92b520cde55a15b",
+                "reference": "094c9264480dceff17bba9c9c92b520cde55a15b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/event-dispatcher": "2.1.*",
-                "symfony/locale": "2.1.*",
-                "symfony/options-resolver": "2.1.*"
+                "symfony/event-dispatcher": ">=2.1,<3.0",
+                "symfony/locale": ">=2.0,<3.0",
+                "symfony/options-resolver": ">=2.1,<2.4-dev",
+                "symfony/property-access": ">=2.2,<2.4-dev"
             },
             "require-dev": {
-                "symfony/http-foundation": "2.1.*",
-                "symfony/validator": "2.1.*"
+                "symfony/http-foundation": ">=2.1,<2.4-dev",
+                "symfony/validator": ">=2.2,<2.4-dev"
             },
             "suggest": {
-                "symfony/http-foundation": "2.1.*",
-                "symfony/validator": "2.1.*"
+                "symfony/http-foundation": "2.2.*",
+                "symfony/validator": "2.2.*"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Form": ""
+                    "Symfony\\Component\\Form\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -448,7 +506,7 @@
             ],
             "description": "Symfony Form Component",
             "homepage": "http://symfony.com",
-            "time": "2013-04-01 08:04:03"
+            "time": "2013-04-01 08:07:53"
         },
         {
             "name": "symfony/http-foundation",
@@ -571,30 +629,38 @@
         },
         {
             "name": "symfony/locale",
-            "version": "2.1.x-dev",
+            "version": "dev-master",
             "target-dir": "Symfony/Component/Locale",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Locale.git",
-                "reference": "v2.1.9"
+                "reference": "6f483387a96eb40dccb9659c3a712b48349d78f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Locale/zipball/v2.1.9",
-                "reference": "v2.1.9",
+                "url": "https://api.github.com/repos/symfony/Locale/zipball/6f483387a96eb40dccb9659c3a712b48349d78f4",
+                "reference": "6f483387a96eb40dccb9659c3a712b48349d78f4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "suggest": {
-                "ext-intl": ">=5.3.3"
+                "ext-intl": "to use other locales than built-in `en`"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Locale": ""
-                }
+                    "Symfony\\Component\\Locale\\": ""
+                },
+                "classmap": [
+                    "Symfony/Component/Locale/Resources/stubs"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -612,30 +678,35 @@
             ],
             "description": "Symfony Locale Component",
             "homepage": "http://symfony.com",
-            "time": "2013-01-10 04:41:59"
+            "time": "2013-02-04 12:42:02"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "2.1.x-dev",
+            "version": "dev-master",
             "target-dir": "Symfony/Component/OptionsResolver",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/OptionsResolver.git",
-                "reference": "v2.1.9"
+                "reference": "cd96a41d15b2b1d769fd071c0602207c125af461"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/OptionsResolver/zipball/v2.1.9",
-                "reference": "v2.1.9",
+                "url": "https://api.github.com/repos/symfony/OptionsResolver/zipball/cd96a41d15b2b1d769fd071c0602207c125af461",
+                "reference": "cd96a41d15b2b1d769fd071c0602207c125af461",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\OptionsResolver": ""
+                    "Symfony\\Component\\OptionsResolver\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -659,7 +730,65 @@
                 "configuration",
                 "options"
             ],
-            "time": "2013-01-09 08:51:07"
+            "time": "2013-01-31 21:39:01"
+        },
+        {
+            "name": "symfony/property-access",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/PropertyAccess",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/PropertyAccess.git",
+                "reference": "072ae5c084eedf7092182f2aff3ab713c63a4672"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/PropertyAccess/zipball/072ae5c084eedf7092182f2aff3ab713c63a4672",
+                "reference": "072ae5c084eedf7092182f2aff3ab713c63a4672",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\PropertyAccess\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony PropertyAccess Component",
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "access",
+                "array",
+                "extraction",
+                "index",
+                "injection",
+                "object",
+                "property",
+                "property path",
+                "reflection"
+            ],
+            "time": "2013-04-01 08:07:30"
         },
         {
             "name": "symfony/routing",
@@ -839,6 +968,67 @@
             "description": "Symfony Twig Bridge",
             "homepage": "http://symfony.com",
             "time": "2013-03-23 13:07:03"
+        },
+        {
+            "name": "symfony/validator",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/Validator",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Validator.git",
+                "reference": "b9e2fa05cf314a8c64db801adbfce611028e63b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Validator/zipball/b9e2fa05cf314a8c64db801adbfce611028e63b9",
+                "reference": "b9e2fa05cf314a8c64db801adbfce611028e63b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/translation": ">=2.0,<3.0"
+            },
+            "require-dev": {
+                "symfony/config": ">=2.2,<2.4-dev",
+                "symfony/http-foundation": ">=2.1,<3.0",
+                "symfony/locale": ">=2.0,<3.0",
+                "symfony/yaml": ">=2.0,<3.0"
+            },
+            "suggest": {
+                "doctrine/common": "~2.2",
+                "symfony/config": "2.2.*",
+                "symfony/http-foundation": "2.2.*",
+                "symfony/locale": "2.2.*",
+                "symfony/yaml": "2.2.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Validator\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Validator Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-04-01 08:07:53"
         },
         {
             "name": "twig/twig",

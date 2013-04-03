@@ -8,8 +8,18 @@ form {
 #form_url {
     width:20em;
 }
+#form_error li {
+    list-style:none;
+}
 </style>
-<form action="#" method="post" class="form-inline">
+<form action="{{ path('short_url_homepage') }}" method="post" class="form-inline">
+
+    {% if form_errors(form.url) is not empty %}
+        <div id="form_error" class="alert alert-block alert-error fade in">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            {{ form_errors(form.url) }}     
+        </div>
+    {% endif %}
     {{ form_widget(form.url) }}
     <button type="submit" class="btn btn-success">Shorten</button>
     {{ form_widget(form) }}
