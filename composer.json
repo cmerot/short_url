@@ -29,6 +29,7 @@
         "aferrandini/phpqrcode": "dev-master",
         "doctrine/dbal": "2.2.*",
         "google/google-api-php-client": "0.6.*",
+        "knplabs/console-service-provider": "dev-master",
         "silex/silex": "1.0.*@dev",
         "symfony/form": "~2.1",
         "symfony/validator": "~2.1",

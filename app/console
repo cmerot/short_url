@@ -1,0 +1,23 @@
+#!/usr/bin/php
+<?php
+
+use Knp\Provider\ConsoleServiceProvider;
+
+// Debug dump functions
+function p() { print_r(func_get_args()); }
+function pd() { print_r(func_get_args()); die; }
+
+include __DIR__ . '/config.php';
+$app = include __DIR__ . '/bootstrap.php';
+
+$app->register(new ConsoleServiceProvider(), array(
+    'console.name'              => 'URL Shortener',
+    'console.version'           => '1.0.0',
+    'console.project_directory' => __DIR__ . '/..',
+));
+
+$console = $app['console'];
+$console->add(new Chocopoche\Silex\Console\ShortenLast());
+$console->add(new Chocopoche\Silex\Console\ShortenAdd());
+$console->add(new Chocopoche\Silex\Console\ShortenResolve());
+$console->run();

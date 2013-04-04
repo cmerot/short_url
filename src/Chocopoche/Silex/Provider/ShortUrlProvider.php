@@ -24,9 +24,6 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
     {
         // Collection of function to access database
         $app['short_url'] = $app->share(function () use ($app) {
-            $host   = $_SERVER['HTTP_HOST'];
-            $proto  = $_SERVER['HTTPS'] ? 'https' : 'http';
-            $prefix = "$proto://$host" . $app['short_url.mountpoint'];
             $bijection  = new Bijection($app['short_url.alphabet']);
             return new ShortUrlModel($app['db'], $bijection);
         });
