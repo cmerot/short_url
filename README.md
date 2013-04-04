@@ -1,5 +1,7 @@
 # Url shortener application
 
+[![Build Status](https://travis-ci.org/chocopoche/short_url.png?branch=master)](https://travis-ci.org/chocopoche/short_url)
+
 Yet another url shortener built for Silex's PHP framework!
 
 ## Install
