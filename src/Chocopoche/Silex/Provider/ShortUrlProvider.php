@@ -30,7 +30,9 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
 
         // The form to shorten an url
         $app['short_url.form'] = $app->share(function () use ($app) {
-            return $app['form.factory']->createBuilder('form')
+            return $app['form.factory']->createBuilder('form', null, array(
+                    'csrf_protection' => ! isset($app['console']),
+            ))
                 ->add('url', 'text', array(
                     'attr'  => array(
                         'placeholder'   => 'Paste your URL here',

@@ -25,9 +25,10 @@ class ShortenAdd extends BaseCommand
         $this->setCode(function (InputInterface $input, OutputInterface $output) use ($cmd) {
             $app = $cmd->getApplication()->getSilexApplication();
             $url = $input->getArgument('url');
+            $form = $app['short_url.form'];
+            $form->bind(array('url' => $url));
 
-            // TODO: use the existing form to validate
-            if(filter_var($url, FILTER_VALIDATE_URL)){ 
+            if($form->isValid()) { 
                 $id = $app['short_url']->add($url);
                 $url_details = $app['short_url']->getById($id);
                 $output->writeln($url_details['short_code'] . '|' . $url_details['url']);
