@@ -26,8 +26,13 @@ readable after extracting the tarball.
 Then creates the database, here is how to do so with an sqlite database:
 
     $ mkdir db
-    $ sqlite3 db/app.db < short_url.sql
+    $ app/console db:create
+    $ app/console db:import-schema
     $ chmod -R a+w db
+
+To run tests:
+
+    $ vendor/bin/phpunit
 
 To let users authenticate themselves to keep track of their urls, enable
 Google OAuth2 by creating an application on the [console](https://code.google.com/apis/console/).
