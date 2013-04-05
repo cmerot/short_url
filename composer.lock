@@ -397,12 +397,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Config.git",
-                "reference": "2b8694ad7f46072b154faaf5e74f2a06cb828fa7"
+                "reference": "6a9046f65ed72b9ed41dc063bba1d59978114a65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/2b8694ad7f46072b154faaf5e74f2a06cb828fa7",
-                "reference": "2b8694ad7f46072b154faaf5e74f2a06cb828fa7",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/6a9046f65ed72b9ed41dc063bba1d59978114a65",
+                "reference": "6a9046f65ed72b9ed41dc063bba1d59978114a65",
                 "shasum": ""
             },
             "require": {
@@ -435,7 +435,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2013-03-01 10:42:20"
+            "time": "2013-04-02 09:39:57"
         },
         {
             "name": "symfony/console",
@@ -718,12 +718,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Locale.git",
-                "reference": "6f483387a96eb40dccb9659c3a712b48349d78f4"
+                "reference": "704f8ec088915e4be0cdce8134b02a659d45090e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Locale/zipball/6f483387a96eb40dccb9659c3a712b48349d78f4",
-                "reference": "6f483387a96eb40dccb9659c3a712b48349d78f4",
+                "url": "https://api.github.com/repos/symfony/Locale/zipball/704f8ec088915e4be0cdce8134b02a659d45090e",
+                "reference": "704f8ec088915e4be0cdce8134b02a659d45090e",
                 "shasum": ""
             },
             "require": {
@@ -762,7 +762,7 @@
             ],
             "description": "Symfony Locale Component",
             "homepage": "http://symfony.com",
-            "time": "2013-02-04 12:42:02"
+            "time": "2013-04-02 09:39:57"
         },
         {
             "name": "symfony/options-resolver",
@@ -771,12 +771,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/OptionsResolver.git",
-                "reference": "cd96a41d15b2b1d769fd071c0602207c125af461"
+                "reference": "67687c8b31b137932933de882f27ff551741d9f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/OptionsResolver/zipball/cd96a41d15b2b1d769fd071c0602207c125af461",
-                "reference": "cd96a41d15b2b1d769fd071c0602207c125af461",
+                "url": "https://api.github.com/repos/symfony/OptionsResolver/zipball/67687c8b31b137932933de882f27ff551741d9f5",
+                "reference": "67687c8b31b137932933de882f27ff551741d9f5",
                 "shasum": ""
             },
             "require": {
@@ -814,7 +814,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2013-01-31 21:39:01"
+            "time": "2013-04-02 09:39:57"
         },
         {
             "name": "symfony/property-access",
@@ -939,12 +939,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Translation.git",
-                "reference": "cb8553294d259431f11b19d731d81a483309320a"
+                "reference": "b518a3100b09b5de4b4750e9415c00ad1bd77b1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Translation/zipball/cb8553294d259431f11b19d731d81a483309320a",
-                "reference": "cb8553294d259431f11b19d731d81a483309320a",
+                "url": "https://api.github.com/repos/symfony/Translation/zipball/b518a3100b09b5de4b4750e9415c00ad1bd77b1e",
+                "reference": "b518a3100b09b5de4b4750e9415c00ad1bd77b1e",
                 "shasum": ""
             },
             "require": {
@@ -985,7 +985,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-04-01 08:07:53"
+            "time": "2013-04-02 09:39:57"
         },
         {
             "name": "symfony/twig-bridge",

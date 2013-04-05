@@ -3,6 +3,7 @@ namespace Chocopoche\Tests\Silex\Provider;
 
 use Silex\WebTestCase;
 use Silex\Provider\SessionServiceProvider;
+use Silex\Provider\DoctrineServiceProvider;
 
 /**
  * ShortUrlProvider test cases.
@@ -29,10 +30,22 @@ class ShortUrlProviderTest extends WebTestCase
 
     public function createApplication()
     {
+        $debug = true;
         $app = require __DIR__ . '/../../../../../app/bootstrap.php';
+
+        // Override previously registered services
         $app->register(new SessionServiceProvider(), array(
             'session.test' => true,
         ));
+        $app->register(new DoctrineServiceProvider(), array(
+            'db.options' => array(
+                'driver'   => 'pdo_sqlite',
+                'path'     => ':memory:',
+            ),
+        ));
+
+        $model = $app['short_url'];
+        $model->importSchema();
         return $app;
     }
 }
