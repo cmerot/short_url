@@ -1,10 +1,10 @@
 <?php
 namespace Chocopoche\Silex\Console;
-use \Symfony\Component\Console\Command\Command as BaseCommand;
-use \Symfony\Component\Console\Input\InputInterface;
-use \Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Command\Command as BaseCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
-class ShortenLast    extends BaseCommand
+class ShortenLast extends BaseCommand
 {
 
     /**
@@ -13,7 +13,7 @@ class ShortenLast    extends BaseCommand
     protected function configure() {
         $this
             ->setName("shorten:last")
-            ->setDescription("Shortens the given URL.");
+            ->setDescription("Gets last 10 shorten urls.");
 
         $cmd = $this;
         $this->setCode(function (InputInterface $input, OutputInterface $output) use ($cmd) {

@@ -66,6 +66,10 @@ Or just add a bookmark with the following url:
 
 A live demo is available at [tmb.io](http://tmb.io).
 
+## API Doc
+
+Available at [api.tmb.io](http://api.tmb.io).
+
 ## Todo
 
 - testing + travis

@@ -4,8 +4,9 @@ namespace Chocopoche\Silex\Model;
 use Chocopoche\Math\Bijection;
 
 /**
- * Helper methods to interact with the database
- * TODO a proper doctrine orm, or not
+ * Helper methods to interact with the database.
+ *
+ * @todo a proper doctrine orm, or not
  */
 class ShortUrlModel
 {

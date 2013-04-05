@@ -2,7 +2,7 @@
 namespace Chocopoche\Math;
 
 /**
- * Bijective helper
+ * Bijective helper to encode integers to string and vice versa.
  *
  * @see http://www.flickr.com/groups/api/discuss/72157616713786392/
  *
@@ -22,7 +22,7 @@ class Bijection
     }
 
     /**
-     * Encode an integer
+     * Encodes an integer to a string.
      *
      * @param integer The integer to encode
      *
@@ -44,7 +44,7 @@ class Bijection
     }
 
     /**
-     * Decode an integer
+     * Decodes a string to an integer.
      *
      * @param string The string to decode
      *

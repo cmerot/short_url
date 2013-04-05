@@ -4,9 +4,15 @@ use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * CLI command to create a database via `db:create`.
+ */
 class DBCreateDatabase extends BaseCommand
 {
-
+    
+    /**
+     * The command itself.
+     */
     protected function configure() {
         $this
             ->setName("db:create")

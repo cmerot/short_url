@@ -28,11 +28,11 @@ class ShortenAdd extends BaseCommand
             $form = $app['short_url.form'];
             $form->bind(array('url' => $url));
 
-            if($form->isValid()) { 
+            if($form->isValid()) {
                 $id = $app['short_url']->add($url);
                 $url_details = $app['short_url']->getById($id);
                 $output->writeln($url_details['short_code'] . '|' . $url_details['url']);
-            } 
+            }
             else {
                 $output->writeln($url);
                 $output->writeln('This value is not a valid URL.');

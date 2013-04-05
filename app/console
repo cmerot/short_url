@@ -3,7 +3,7 @@
 
 use Knp\Provider\ConsoleServiceProvider;
 
-include __DIR__ . '/config.php';
+include __DIR__ . '/../config/app.php';
 $app = include __DIR__ . '/bootstrap.php';
 
 $app->register(new ConsoleServiceProvider(), array(
@@ -13,9 +13,10 @@ $app->register(new ConsoleServiceProvider(), array(
 ));
 
 $console = $app['console'];
-$console->add(new Chocopoche\Silex\Console\DBCreateDatabase());
-$console->add(new Chocopoche\Silex\Console\DBImportSchema());
-$console->add(new Chocopoche\Silex\Console\ShortenLast());
-$console->add(new Chocopoche\Silex\Console\ShortenAdd());
-$console->add(new Chocopoche\Silex\Console\ShortenResolve());
+$console->add(new Chocopoche\Silex\Console\DBCreateDatabase);
+$console->add(new Chocopoche\Silex\Console\DBImportSchema);
+$console->add(new Chocopoche\Silex\Console\ShortenLast);
+$console->add(new Chocopoche\Silex\Console\ShortenAdd);
+$console->add(new Chocopoche\Silex\Console\ShortenResolve);
+
 $console->run();
