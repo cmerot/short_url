@@ -64,32 +64,33 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
         });
 
         // Error management
-        $app->error(function (\Exception $e, $code) use ($app) {
-            if ($code >= 400 && $code < 500)
-                $message = $e->getMessage();
-            else
-                $message = 'Whoops, looks like something went wrong.';
+        if ( ! $app['debug']) {
+            $app->error(function (\Exception $e, $code) use ($app) {
+                if ($code >= 400 && $code < 500)
+                    $message = $e->getMessage();
+                else
+                    $message = 'Whoops, looks like something went wrong.';
 
-            // In case twig goes wrong, exemple: no route found means the 
-            // $app->before() wont be executed
-            try {
-                $app['user'] = false;
-                $app['twig']->addGlobal('layout', $app['twig']->loadTemplate('layout.twig'));
-                return $app['twig']->render('error.twig', array(
-                    'message' => $message,
-                    'code'    => $code,
-                ));
-            } catch (\Exception $e) {
-                return new Response('Whoops, looks like something went very wrong.', $code);        
-            }
-        });
+                // In case twig goes wrong, exemple: no route found means the 
+                // $app->before() wont be executed
+                try {
+                    $app['user'] = false;
+                    $app['twig']->addGlobal('layout', $app['twig']->loadTemplate('layout.twig'));
+                    return $app['twig']->render('error.twig', array(
+                        'message' => $message,
+                        'code'    => $code,
+                    ));
+                } catch (\Exception $e) {
+                    return new Response('Whoops, looks like something went very wrong.', $code);        
+                }
+            });
+        }
 
         // creates a new controller based on the default route
         $controllers = $app['controllers_factory'];
 
         // Homepage + form handler
         $controllers->get('/', function (Request $request) use ($app) {
-
             return $app['twig']->render('index.twig', array(
                 'form' => $app['short_url.form']->createView(),
                 'last' => $app['short_url']->getLastShorten(10),

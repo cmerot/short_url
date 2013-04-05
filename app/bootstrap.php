@@ -16,7 +16,7 @@ date_default_timezone_set('UTC');
 
 // App service provider setup
 $app = new Application();
-$app['debut'] = true;
+$app['debug'] = isset($debug) ? $debug : false;
 $app->register(new UrlGeneratorServiceProvider());
 $app->register(new SessionServiceProvider());
 $app->register(new FormServiceProvider());
@@ -33,8 +33,8 @@ $app->register(new DoctrineServiceProvider(), array(
 ));
 $oauth = new GoogleOauth2Provider;
 $app->register($oauth, array(
-    'google_oauth.client_id'     => $google_oauth_client_id,
-    'google_oauth.client_secret' => $google_oauth_client_secret,
+    'google_oauth.client_id'     => isset($google_oauth_client_id) ? $google_oauth_client_id : '',
+    'google_oauth.client_secret' => isset($google_oauth_client_secret) ? $google_oauth_client_secret : '',
 ));
 $app->mount('/', $oauth);
 

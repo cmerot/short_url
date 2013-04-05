@@ -25,19 +25,8 @@ class ShortUrlModel
         $this->encoder = $encoder;
     }
 
-    /**
-     * Proxy method for $this->encoder->encode()
-     */
-    public function encode($code) { return $this->encoder->encode($code); }
-
-    /**
-     * Proxy method for $this->encoder->decode()
-     */
-    public function decode($code) { return $this->encoder->decode($code); }
-
-
     public function getByShortCode($short_code) {
-        $id = $this->decode($short_code);
+        $id = $this->encoder->decode($short_code);
 
         return $this->getById($id);
     }
@@ -45,7 +34,7 @@ class ShortUrlModel
     public function getById($id) {
         $url = $this->db->fetchColumn('SELECT url FROM url WHERE id = ?', array($id));
         if (!$url) return false;
-        $short_code = $this->encode($id);
+        $short_code = $this->encoder->encode($id);
 
         return array(
             'id'         => $id,
@@ -69,11 +58,10 @@ class ShortUrlModel
         else {
             $urls  = $this->db->fetchAll('SELECT id, url FROM url ORDER BY id DESC LIMIT ?', array($count));
         }
-        $model = $this;
-        array_walk($urls, function(&$u) use ($model) {
-            $u['short_code']    = $model->encode($u['id']);
-        });
 
+        for ($i=0; $i < count($urls); $i++) { 
+            $urls[$i]['short_code'] = $this->encoder->encode($urls[$i]['id']);
+        }
         return $urls;
     }
 
@@ -136,13 +124,46 @@ class ShortUrlModel
     }
 
     /**
+     * Import the schema in the database
+     */
+    public function importSchema() {
+
+        $sm = new \Doctrine\DBAL\Schema\Schema;
+        $user = $sm->createTable("user");
+        $user->addColumn("id",    "integer", array("unsigned" => true));
+        $user->addColumn("email", "string",  array("length"   => 255));
+        $user->setPrimaryKey(array("id"));
+
+        $url = $sm->createTable("url");
+        $url->addColumn("id",         "integer", array("unsigned" => true));
+        $url->addColumn("user_id",    "integer", array("unsigned" => true, "notnull" => false));
+        $url->addColumn("url",        "string",  array("length"   => 1024));
+        $url->addColumn("created_at", "datetime");
+        $url->addForeignKeyConstraint($user, array("user_id"), array("id"), array("onUpdate" => "CASCADE"));
+        $url->setPrimaryKey(array("id"));
+
+        $redirect = $sm->createTable("redirect");
+        $redirect->addColumn("id",         "integer",  array("unsigned" => true));
+        $redirect->addColumn("url_id",     "integer",  array("unsigned" => true));
+        $redirect->addForeignKeyConstraint($url, array("url_id"), array("id"), array("onUpdate" => "CASCADE"));
+        $redirect->addColumn("created_at", "datetime");
+        $redirect->setPrimaryKey(array("id"));
+
+        $queries = $sm->toSql($this->db->getDatabasePlatform()); // get queries to create this schema.
+
+        foreach ($queries as $query) {
+            $this->db->query($query);
+        }
+    }
+
+    /**
      * Get a user id from its email. Creates a record if the email does not exist
      *
      * @param string $email The user email
      *
      * @return integer The user id
      */
-    public function getUserId($email) {
+    private function getUserId($email) {
         $id = $this->db->fetchColumn('SELECT id FROM user WHERE email = ?', array($email));
 
         if (!$id) {
