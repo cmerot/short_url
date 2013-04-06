@@ -26,12 +26,26 @@ class ShortUrlModel
         $this->encoder = $encoder;
     }
 
+    /**
+     * Finds an URL by its short code.
+     *
+     * @param string $short_code The url short_code
+     *
+     * @return array|false       The URL details are false if not found
+     */
     public function getByShortCode($short_code) {
         $id = $this->encoder->decode($short_code);
 
         return $this->getById($id);
     }
 
+    /**
+     * Finds an URL by its id.
+     *
+     * @param integer $id The url id
+     *
+     * @return array|false The URL details are false if not found
+     */
     public function getById($id) {
         $url = $this->db->fetchColumn('SELECT url FROM url WHERE id = ?', array($id));
         if (!$url) return false;
@@ -55,12 +69,12 @@ class ShortUrlModel
         if ($email) {
             $user_id = $this->getUserId($email);
             $urls  = $this->db->fetchAll('SELECT id, url FROM url WHERE user_id = ? ORDER BY id DESC LIMIT ?', array($user_id, $count));
-        } 
+        }
         else {
             $urls  = $this->db->fetchAll('SELECT id, url FROM url ORDER BY id DESC LIMIT ?', array($count));
         }
 
-        for ($i=0; $i < count($urls); $i++) { 
+        for ($i=0; $i < count($urls); $i++) {
             $urls[$i]['short_code'] = $this->encoder->encode($urls[$i]['id']);
         }
         return $urls;
@@ -68,10 +82,10 @@ class ShortUrlModel
 
     /**
      * Returns the last times a short url has been hit
-     * 
+     *
      * @param string  $short_code The encoded code that represents a record id
      * @param integer $count      The limit of records to retrieve
-     * 
+     *
      * @return array The last $count redirects url in an associative array (key: created_at)
      */
     public function getLastRedirects($id, $count = 10) {
@@ -82,9 +96,9 @@ class ShortUrlModel
 
     /**
      * Returns the number of redirects for an url
-     * 
+     *
      * @param integer $id Represents a record id
-     * 
+     *
      * @return integer The number of redirects
      */
     public function getRedirectCounter($id) {
@@ -95,7 +109,7 @@ class ShortUrlModel
 
     /**
      * Increments the hit counter of a shorten url
-     * 
+     *
      * @param integer $id Represents a record id
      */
     public function incrementCounter($id) {
@@ -112,10 +126,10 @@ class ShortUrlModel
     public function add($long_url, $email = null) {
         if (! $email) {
             $this->db->insert('url', array('url' => $long_url, 'created_at' => date('Y-m-d H:i:s')));
-        } 
+        }
         else {
             $this->db->insert('url', array(
-                'url'           => $long_url, 
+                'url'           => $long_url,
                 'created_at'    => date('Y-m-d H:i:s'),
                 'user_id'       => $this->getUserId($email),
             ));
@@ -125,7 +139,9 @@ class ShortUrlModel
     }
 
     /**
-     * Import the schema in the database
+     * Imports the schema in the database
+     *
+     * @throw \PDOException if schema already imported
      */
     public function importSchema() {
 
