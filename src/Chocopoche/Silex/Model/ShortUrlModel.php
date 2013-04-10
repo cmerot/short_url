@@ -61,17 +61,18 @@ class ShortUrlModel
     /**
      * Returns the last shortened urls
      *
-     * @param integer $count The number of url to return
+     * @param integer $limit The number of url to return
+     * @param integer $email The email to use as a filter
      *
-     * @return array The $count last shortened url in an associative array
+     * @return array The $limit last shortened urls in an associative array
      */
-    public function getLastShorten($count = 1, $email = null) {
+    public function getLastShorten($limit = 1, $email = null) {
         if ($email) {
             $user_id = $this->getUserId($email);
-            $urls  = $this->db->fetchAll('SELECT id, url FROM url WHERE user_id = ? ORDER BY id DESC LIMIT ?', array($user_id, $count));
+            $urls  = $this->db->fetchAll('SELECT id, url FROM url WHERE user_id = ? ORDER BY id DESC LIMIT ' . $limit, array($user_id));
         }
         else {
-            $urls  = $this->db->fetchAll('SELECT id, url FROM url ORDER BY id DESC LIMIT ?', array($count));
+            $urls  = $this->db->fetchAll('SELECT id, url FROM url ORDER BY id DESC LIMIT ' . $limit);
         }
 
         for ($i=0; $i < count($urls); $i++) {
@@ -84,12 +85,12 @@ class ShortUrlModel
      * Returns the last times a short url has been hit
      *
      * @param string  $short_code The encoded code that represents a record id
-     * @param integer $count      The limit of records to retrieve
+     * @param integer $limit      The limit of records to retrieve
      *
-     * @return array The last $count redirects url in an associative array (key: created_at)
+     * @return array The last $limit redirects url in an associative array (key: created_at)
      */
-    public function getLastRedirects($id, $count = 10) {
-        $redirects = $this->db->fetchALL('SELECT created_at FROM redirect WHERE url_id = ? ORDER BY id DESC LIMIT ?', array($id, $count));
+    public function getLastRedirects($id, $limit = 10) {
+        $redirects = $this->db->fetchALL('SELECT created_at FROM redirect WHERE url_id = ? ORDER BY id DESC LIMIT ' . $limit, array($id));
 
         return $redirects;
     }
