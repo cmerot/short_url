@@ -3,7 +3,9 @@
     <div class="btn-group navbar-text pull-right">
         <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
             {{ app.google_oauth_user_email }}
+            {% if app.google_oauth_user_picture %}
             <img src="{{ app.google_oauth_user_picture }}?sz=20" alt="Profile picture">
+            {% endif %}
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">

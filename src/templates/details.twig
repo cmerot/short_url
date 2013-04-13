@@ -1,13 +1,17 @@
 {% extends layout %}
- 
+
 {% block content %}
 <h2>
   {{ url('short_url_redirect', { 'short_code': short_code}) }}
+  <br>
   <small>{{ long_url }}</small>
 </h2>
 <p>{{ redirects_counter }} redirections!</p>
 <img src="{{ path('short_url_qrcode', { 'short_code': short_code}) }}">
 
+<h3><a href="{{ long_url }}">Go there!</a></h3>
+
+{% if last_redirects|length > 0 %}
 <h2>Last redirects</h2>
 <table class="table">
     <tr>
@@ -19,6 +23,5 @@
     </tr>
     {% endfor %}
 </table>
-
+{% endif %}
 {% endblock %}
-
