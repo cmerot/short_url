@@ -1,6 +1,10 @@
 /vendor
 /composer.phar
-/db
 /cache/*
 /doc
+/db
+/web/qr
+/tmp
+/backup
+/config/nginx.conf
 ._*

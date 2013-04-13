@@ -1,0 +1,34 @@
+# <%= "#{application}.#{stage}" %>
+server {
+  server_name  <%= "#{params[:server][:hostname]}" %>;
+  access_log  /var/log/nginx/<%= "#{application}.#{stage}" %>.access.log;
+
+  # documentroot
+  root <%= "#{current_path}" %>/web;
+
+  location ~ ^/doc/(.*)$ {
+    alias <%= "#{current_path}" %>/doc/$1;
+  }
+
+  location ~* \.(js|css)$ {
+    log_not_found off;
+    access_log off;
+  }
+
+  #site root is redirected to the app boot script
+  location = / {
+    try_files @site @site;
+  }
+
+  #all other locations try other files first and go to our front controller if none of them exists
+  location / {
+    try_files $uri $uri/ @site;
+  }
+
+  location @site {
+    include fastcgi_params;
+    fastcgi_pass   127.0.0.1:9000;
+    fastcgi_param  SCRIPT_FILENAME $document_root/index.php;
+  }
+}
+

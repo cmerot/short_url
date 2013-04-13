@@ -1,0 +1,18 @@
+debug: <%= "#{params[:debug]}" %>
+
+short_url:
+  mountpoint:     '<%= "#{params[:short_url][:mountpoint]}" %>'
+  alphabet:       '<%= "#{params[:short_url][:alphabet]}" %>'
+
+google_oauth:
+  mountpoint:     '<%= "#{params[:google_oauth][:mountpoint]}" %>'
+  client_id:      '<%= "#{params[:google_oauth][:client_id]}" %>'
+  client_secret:  '<%= "#{params[:google_oauth][:client_secret]}" %>'
+
+databases:
+  short_url:
+    driver:     '<%= "#{params[:database][:driver]}" %>'
+    dbname:     '<%= "#{params[:database][:dbname]}" %>'
+    user:       '<%= "#{params[:database][:user]}" %>'
+    password:   '<%= "#{params[:database][:password]}" %>'
+    host:       '<%= "#{params[:database][:host]}" %>'
