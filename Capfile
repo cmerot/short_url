@@ -6,7 +6,7 @@ require 'capistrano/chocopoche'
 
 # Base configuration
 set :application,   "short_url"
-set :repository,    "git@git.tmb.io:short_url_capistrano.git"
+set :repository,    "git@github.com:chocopoche/short_url.git"
 set :use_sudo,      false
 ssh_options[:forward_agent] = true
 
