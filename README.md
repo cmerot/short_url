@@ -13,11 +13,6 @@ First, install the package and its dependencies:
     $ curl -sS https://getcomposer.org/installer | php
     $ php composer.phar update
 
-You can also directly use composer:
-
-    $ curl -sS https://getcomposer.org/installer | php
-    $ php composer.phar create-project -s dev chocopoche/short_url PATH/TO/YOUR/APP
-
 You may have to fix perms on the vendor/google directory, as its not world
 readable after extracting the tarball.
 
