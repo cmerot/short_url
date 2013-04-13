@@ -25,10 +25,8 @@ readable after extracting the tarball.
 
 Then creates the database, here is how to do so with an sqlite database:
 
-    $ mkdir db
     $ app/console db:create
     $ app/console db:import-schema
-    $ chmod -R a+w db
 
 To run tests:
 
@@ -77,11 +75,4 @@ A live demo is available at [tmb.io](http://tmb.io).
 
 ## API Doc
 
-Available at [api.tmb.io](http://api.tmb.io).
-
-## Todo
-
-- testing + travis
-- assetic + console
-- ...
-
+Available at [tmb.io/doc/](http://tmb.io/doc/).

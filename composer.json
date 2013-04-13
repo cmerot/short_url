@@ -36,6 +36,7 @@
         "symfony/config": "~2.1",
         "symfony/translation": "~2.1",
         "symfony/twig-bridge": "~2.1",
+        "symfony/yaml": "~2.1",
         "twig/twig": ">=1.8,<2.0-dev"
     },
     "require-dev": {
@@ -47,5 +48,9 @@
         "psr-0": {
             "Chocopoche": "src/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": "Chocopoche\\Composer\\Script::install",
+        "post-update-cmd":  "Chocopoche\\Composer\\Script::install"
     }
 }
