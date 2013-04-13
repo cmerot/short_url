@@ -1,0 +1,22 @@
+debug: true
+
+short_url:
+  mountpoint:     '/'
+  alphabet:       '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
+
+google_oauth:
+  mountpoint:     '/'
+  client_id:      'paste here your client id'
+  client_secret:  'paste here your client secret'
+
+databases:
+  short_url:
+    driver:     'pdo_sqlite'
+    path:       'db/app.db'
+
+  # short_url:
+  #   driver:     'pdo_mysql'
+  #   dbname:     'short_url'
+  #   user:       'short_url'
+  #   password:   'short_url'
+  #   host:       'localhost'

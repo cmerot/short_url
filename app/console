@@ -3,7 +3,6 @@
 
 use Knp\Provider\ConsoleServiceProvider;
 
-include __DIR__ . '/../config/app.php';
 $app = include __DIR__ . '/bootstrap.php';
 
 $app->register(new ConsoleServiceProvider(), array(
