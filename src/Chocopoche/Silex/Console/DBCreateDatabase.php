@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class DBCreateDatabase extends BaseCommand
 {
-    
+
     /**
      * The command itself.
      */
@@ -26,18 +26,23 @@ class DBCreateDatabase extends BaseCommand
 
             if ($params['driver'] == 'pdo_sqlite') {
                 $dbname = $params['path'];
-            } else {
-                $dbname = $params['dbname'];
+                if (! is_file($dbname)) {
+                    $old_umask = umask(0);
+                    if (!is_dir(dirname($dbname))) {
+                        mkdir(dirname($dbname), 0777, true);
+                    }
+                    $sm = new \Doctrine\DBAL\Schema\Schema;
+                    $conn->getSchemaManager()->createDatabase($dbname);
+                    chmod($dbname, 0666);
+                    umask($old_umask);
+                    $output->writeln('Database created (world writable).');
+                }
+                else {
+                    $output->writeln('Database already exists. Aborting.');
+                }
             }
-
-            $sm = new \Doctrine\DBAL\Schema\Schema;
-            $conn->getSchemaManager()->createDatabase($dbname);
-            $conn_params = $conn->getParams();
-            if ($conn_params['path'] && ! is_file($conn_params['path'])) {
-                $conn->getSchemaManager()->createDatabase($conn_params['path']);
-                $output->writeln('Database created and schema imported.');
-            } else {
-                $output->writeln('Database already exists. Aborting.');
+            else {
+                $output->writeln('Supports only sqlite. Aborting.');
             }
         });
     }

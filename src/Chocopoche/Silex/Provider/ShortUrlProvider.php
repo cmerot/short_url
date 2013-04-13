@@ -55,7 +55,7 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
     /**
      * @see ControllerProviderInterface::connect
      */
-    public function connect(Application $app) 
+    public function connect(Application $app)
     {
 
         // Global layout
@@ -71,7 +71,7 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
                 else
                     $message = 'Whoops, looks like something went wrong.';
 
-                // In case twig goes wrong, exemple: no route found means the 
+                // In case twig goes wrong, exemple: no route found means the
                 // $app->before() wont be executed
                 try {
                     $app['user'] = false;
@@ -81,7 +81,7 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
                         'code'    => $code,
                     ));
                 } catch (\Exception $e) {
-                    return new Response('Whoops, looks like something went very wrong.', $code);        
+                    return new Response('Whoops, looks like something went very wrong.', $code);
                 }
             });
         }
@@ -111,7 +111,7 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
                 $r_url = $app['url_generator']->generate('short_url_details', array('short_code' => $url_details['short_code']));
 
                 return $app->redirect($r_url);
-            } 
+            }
             else {
                 return $app['twig']->render('index.twig', array(
                     'form' => $form->createView(),
@@ -143,7 +143,7 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
 
             if ($url_details) {
                 $short_url   = $app['url_generator']->generate('short_url_redirect', array('short_code' => $short_code), true);
-                $file        = $_SERVER['DOCUMENT_ROOT'] . "/../cache/$short_code.png";
+                $file        = $_SERVER['DOCUMENT_ROOT'] . "/qr/$short_code.png";
 
                 if (!file_exists($file)) {
                     QRcode::png($short_url, $file, 'L', 4, 2);
@@ -168,7 +168,7 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
                 $r_url = $app['url_generator']->generate('short_url_details', array('short_code' => $url_details['short_code']));
 
                 return $app->redirect($r_url);
-            } 
+            }
             else {
                 $app->abort(404, $errors->get(0)->getMessage());
             }
@@ -207,7 +207,7 @@ class ShortUrlProvider implements ServiceProviderInterface, ControllerProviderIn
 
         // User's last shorten urls
         $controllers->get('/mine/', function () use ($app) {
-            if (!$app['user']['email']) 
+            if (!$app['user']['email'])
                 $app->abort(401, "You must be authenticated to access this page.");
 
             return $app['twig']->render('mine.twig', array(

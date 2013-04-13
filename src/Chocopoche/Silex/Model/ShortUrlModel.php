@@ -148,12 +148,12 @@ class ShortUrlModel
 
         $sm = new \Doctrine\DBAL\Schema\Schema;
         $user = $sm->createTable("user");
-        $user->addColumn("id",    "integer", array("unsigned" => true));
+        $user->addColumn("id",    "integer", array("unsigned" => true, "autoincrement" => true));
         $user->addColumn("email", "string",  array("length"   => 255));
         $user->setPrimaryKey(array("id"));
 
         $url = $sm->createTable("url");
-        $url->addColumn("id",         "integer", array("unsigned" => true));
+        $url->addColumn("id",         "integer", array("unsigned" => true, "autoincrement" => true));
         $url->addColumn("user_id",    "integer", array("unsigned" => true, "notnull" => false));
         $url->addColumn("url",        "string",  array("length"   => 1024));
         $url->addColumn("created_at", "datetime");
@@ -161,7 +161,7 @@ class ShortUrlModel
         $url->setPrimaryKey(array("id"));
 
         $redirect = $sm->createTable("redirect");
-        $redirect->addColumn("id",         "integer",  array("unsigned" => true));
+        $redirect->addColumn("id",         "integer",  array("unsigned" => true, "autoincrement" => true));
         $redirect->addColumn("url_id",     "integer",  array("unsigned" => true));
         $redirect->addForeignKeyConstraint($url, array("url_id"), array("id"), array("onUpdate" => "CASCADE"));
         $redirect->addColumn("created_at", "datetime");

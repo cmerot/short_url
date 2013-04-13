@@ -1,6 +1,5 @@
 <?php
 namespace Chocopoche\Silex\Provider;
-
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Silex\ControllerProviderInterface;
@@ -34,7 +33,7 @@ class GoogleOauth2Provider implements ServiceProviderInterface, ControllerProvid
     /**
      * @see ServiceProviderInterface::boot
      */
-    public function boot(Application $app) {  
+    public function boot(Application $app) {
     }
 
     /**
@@ -47,7 +46,7 @@ class GoogleOauth2Provider implements ServiceProviderInterface, ControllerProvid
      *
      * @see ControllerProviderInterface::connect
      */
-    public function connect(Application $app) 
+    public function connect(Application $app)
     {
         $app->before(function () use ($app) {
             $client = $app['google_oauth.client'];
@@ -85,7 +84,7 @@ class GoogleOauth2Provider implements ServiceProviderInterface, ControllerProvid
         // Connect
         $controllers->get('/connect/', function (Request $request) use ($app) {
             $client = $app['google_oauth.client'];
-            if ($client->getAccessToken()) 
+            if ($client->getAccessToken())
                 $url = '/';
             else
                 $url = $client->createAuthUrl();
@@ -107,5 +106,5 @@ class GoogleOauth2Provider implements ServiceProviderInterface, ControllerProvid
         ->bind('google_oauth_callback');
 
         return $controllers;
-    }  
+    }
 }
