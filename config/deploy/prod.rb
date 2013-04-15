@@ -1,9 +1,10 @@
-server 'tmb.io', :app, :web, :db, :primary => true
+server "#{stage}.#{tld}", :app, :web, :db, :primary => true
 
 def set_files_tpl_params
   set :files_tpl_params, {
     :server   => {
-      :hostname => "#{stage}.tmb.io"
+      :hostname     => "#{stage}.#{tld}",
+      :fastcgi_pass => "127.0.0.1:9000",
     },
     :debug    => false,
     :database => {

@@ -3,7 +3,8 @@ server 'localhost', :app, :web, :db, :primary => true
 def set_files_tpl_params
   set :files_tpl_params, {
     :server   => {
-      :hostname => "#{stage}.tmb.io"
+      :hostname     => "#{stage}.#{tld}",
+      :fastcgi_pass => "unix:/var/run/php5-fpm.sock",
     },
     :debug    => true,
     :database => {

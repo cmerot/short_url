@@ -32,7 +32,9 @@ set :files_tpl, [
   }
 ]
 
-# Generate the api doc after deployment
+set :tld, "tmb.io"
+
+# Generate the api doc after deployment if the script exists
 after 'deploy', :roles => :app do
-  run "cd #{current_path} && vendor/bin/sami.php update config/sami.php"
+  run "cd #{current_path} && test -f vendor/bin/sami.php && vendor/bin/sami.php update config/sami.php"
 end
